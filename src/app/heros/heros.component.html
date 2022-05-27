@@ -1,8 +1,18 @@
-<h1>{{ heroFormControl.value | uppercase }}</h1>
-<div>
-  <input type="text" [formControl]="heroFormControl" />
-</div>
-<div>
-  <span style="color: red" *ngIf="heroFormControl.errors">name is require</span>
-  <p>{{ heroFormControl.errors | json }}</p>
-</div>
+<h2>FormControl</h2>
+<input type="text" [formControl]="heroFormControl" />
+
+<p>{{ heroFormControl.value }}</p>
+
+<br />
+
+<h2>FormGroup</h2>
+{{ heroFormGroup.value | json }}
+
+<form [formGroup]="heroFormGroup">
+  <div>
+    <input type="number" formControlName="id" />
+  </div>
+  <div>
+    <input type="text" formControlName="name" />
+  </div>
+</form>
