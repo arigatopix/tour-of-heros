@@ -9,7 +9,7 @@ import { Hero } from '../hero';
   styleUrls: ['./heros.component.scss'],
 })
 export class HerosComponent implements OnInit {
-  hero = {
+  hero: Hero = {
     id: 1,
     name: 'bas',
   };
