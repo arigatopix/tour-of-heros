@@ -1,2 +1,8 @@
-<h1>{{ hero | uppercase }}</h1>
-<input />
+<h1>{{ heroFormControl.value | uppercase }}</h1>
+<div>
+  <input type="text" [formControl]="heroFormControl" />
+</div>
+<div>
+  <span style="color: red" *ngIf="heroFormControl.errors">name is require</span>
+  <p>{{ heroFormControl.errors | json }}</p>
+</div>
