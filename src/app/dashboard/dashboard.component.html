@@ -1,7 +1,10 @@
 <h4>Top Heros</h4>
 
 <div class="my-2 d-flex justify-content-around heroes">
-  <a *ngFor="let hero of heroes" class="m2 p-4 text-decoration-none">{{
-    hero.name
-  }}</a>
+  <a
+    *ngFor="let hero of heroes"
+    class="m2 p-4 text-decoration-none"
+    routerLink="/hero-form/{{ hero.id }}"
+    >{{ hero.name }}</a
+  >
 </div>

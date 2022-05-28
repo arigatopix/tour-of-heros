@@ -1,7 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class HeroFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService
+    private heroService: HeroService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -29,5 +30,9 @@ export class HeroFormComponent implements OnInit {
     this.heroService
       .getHero(Number(id))
       .subscribe((hero) => this.heroFormGroup.setValue(hero));
+  }
+
+  onBackHandler() {
+    this.location.back();
   }
 }

@@ -2,4 +2,7 @@
   <h4>{{ heroFormGroup.get("name")?.value | uppercase }}</h4>
   <label class="form-label" for="name">Hero Name</label>
   <input class="form-control" type="text" formControlName="name" id="name" />
+
+  <hr />
+  <button class="btn btn-secondary" (click)="onBackHandler()">Back</button>
 </form>
