@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeroService } from '../hero.service';
-
 import { Hero } from '../hero';
-import { FnParam } from '@angular/compiler/src/output/output_ast';
-
 @Component({
   selector: 'app-heroes',
   templateUrl: './heros.component.html',
@@ -18,18 +15,14 @@ export class HerosComponent implements OnInit {
     name: new FormControl(),
   });
 
-  constructor(private heroService: HeroService) {}
+  message: string = '';
 
-  // .subscribe({
-  //   next: fn,
-  //   error: fn,
-  //   complete: fn,
-  // })
+  constructor(private heroService: HeroService) {}
 
   ngOnInit(): void {
     this.heroService.getHeroes().subscribe({
       next: (hs) => (this.heroes = hs),
-      error: (err) => console.log(err),
+      error: (err) => (this.message = err.message),
     });
   }
 
