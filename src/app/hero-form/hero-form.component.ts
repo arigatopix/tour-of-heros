@@ -35,4 +35,10 @@ export class HeroFormComponent implements OnInit {
   onBackHandler() {
     this.location.back();
   }
+
+  onSaveHandler() {
+    this.heroService
+      .updateHero(this.heroFormGroup.value)
+      .subscribe(() => this.onBackHandler());
+  }
 }
