@@ -9,11 +9,6 @@ import { HEROES } from './mock-heroes';
 export class HeroService {
   constructor() {}
 
-  // void => Hero[]
-  // getHeroes(): Hero[] {
-  //   return HEROES;
-  // }
-
   // void -> Observable<Hero[]>
   // <Hero[]> เป็นการ check type แบบใส่ type คล้าย arg function
   getHeroes(): Observable<Hero[]> {
@@ -25,5 +20,13 @@ export class HeroService {
     //     message: 'Not Found',
     //   };
     // });
+  }
+
+  // input id
+  // hero เป็น mock-data
+  getHero(id: number): Observable<Hero> {
+    const hero = HEROES.find((hero) => hero.id === id)!;
+    // ใส่ ! บอก compli ว่าอนาคตจะมี value มา assign
+    return of(hero);
   }
 }
