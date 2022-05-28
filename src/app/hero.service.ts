@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
 
@@ -8,7 +9,15 @@ import { HEROES } from './mock-heroes';
 export class HeroService {
   constructor() {}
 
-  getHeroes(): Hero[] {
-    return HEROES;
+  // void => Hero[]
+  // getHeroes(): Hero[] {
+  //   return HEROES;
+  // }
+
+  // void -> Observable<Hero[]>
+  // <Hero[]> เป็นการ check type แบบใส่ type คล้าย arg function
+  getHeroes(): Observable<Hero[]> {
+    // หลังจาก get ข้อมูลให้ return
+    return of(HEROES);
   }
 }
