@@ -1,21 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HeroService } from '../hero.service';
 
 import { Hero } from '../hero';
-import { Observable, switchMap } from 'rxjs';
+import {
+  Observable,
+  switchMap,
+  Subject,
+  takeUntil,
+  debounceTime,
+  distinctUntilChanged,
+} from 'rxjs';
 
 @Component({
   selector: 'app-hero-search',
   templateUrl: './hero-search.component.html',
   styleUrls: ['./hero-search.component.scss'],
 })
-export class HeroSearchComponent implements OnInit {
+export class HeroSearchComponent implements OnInit, OnDestroy {
   termFormControl = new FormControl();
 
   heroes: Hero[] = [];
 
   heroes$!: Observable<Hero[]>;
+
+  // ควรจะ unsubscribe ป้องกัน memory leak
+  _destroy$ = new Subject<void>();
 
   constructor(private heroService: HeroService) {}
 
@@ -33,7 +43,15 @@ export class HeroSearchComponent implements OnInit {
 
     // use async pipe
     this.heroes$ = this.termFormControl.valueChanges.pipe(
+      // การใช้ pipe
+      takeUntil(this._destroy$),
+      debounceTime(300), // ป้องกันยิง api รัวๆ ทุกครั้งที่พิมพ์
+      distinctUntilChanged(), // การกด delete แล้วไม่ยิง api ซ้ำ
       switchMap((value) => this.heroService.searchHero(value))
     );
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next();
   }
 }
