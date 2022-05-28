@@ -10,11 +10,6 @@ import { Hero } from '../hero';
 export class HerosComponent implements OnInit {
   heroes: Hero[] = [];
 
-  heroFormGroup = new FormGroup({
-    id: new FormControl(),
-    name: new FormControl(),
-  });
-
   message: string = '';
 
   constructor(private heroService: HeroService) {}
@@ -24,9 +19,5 @@ export class HerosComponent implements OnInit {
       next: (hs) => (this.heroes = hs),
       error: (err) => (this.message = err.message),
     });
-  }
-
-  onSelectHero(hero: Hero): void {
-    this.heroFormGroup.setValue(hero);
   }
 }

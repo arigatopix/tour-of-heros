@@ -18,12 +18,12 @@ export class HeroService {
   // <Hero[]> เป็นการ check type แบบใส่ type คล้าย arg function
   getHeroes(): Observable<Hero[]> {
     // หลังจาก get ข้อมูลให้ return
-    // return of(HEROES);
-    return throwError(() => {
-      return {
-        status: 404,
-        message: 'Not Found',
-      };
-    });
+    return of(HEROES);
+    // return throwError(() => {
+    //   return {
+    //     status: 404,
+    //     message: 'Not Found',
+    //   };
+    // });
   }
 }
