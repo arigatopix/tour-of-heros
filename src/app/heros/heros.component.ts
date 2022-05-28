@@ -9,12 +9,7 @@ import { Hero } from '../hero';
   styleUrls: ['./heros.component.scss'],
 })
 export class HerosComponent implements OnInit {
-  hero: Hero = {
-    id: 1,
-    name: 'bas',
-  };
-
-  heroFormControl = new FormControl(this.hero, Validators.required);
+  heros = HEROS;
 
   heroFormGroup = new FormGroup({
     id: new FormControl(),
@@ -23,8 +18,9 @@ export class HerosComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.heroFormControl.setValue(this.hero.name);
-    this.heroFormGroup.setValue(this.hero);
+  ngOnInit(): void {}
+
+  onSelectHero(hero: Hero): void {
+    this.heroFormGroup.setValue(hero);
   }
 }
