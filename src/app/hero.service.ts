@@ -25,4 +25,12 @@ export class HeroService {
       hero
     );
   }
+
+  addNewHero(hero: Hero): Observable<Hero> {
+    return this.httpClient.post<Hero>(`${this.basedUrl}/heroes`, hero);
+  }
+
+  deleteHero(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.basedUrl}/heroes/${id}`);
+  }
 }

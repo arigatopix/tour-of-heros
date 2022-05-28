@@ -23,13 +23,14 @@ export class HeroFormComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    // this.route.snapshort.paramMap.get('id')
-    // มาจากการ defind ใน route ได้ string or null
 
-    // ใส่ hero ใน form ตาม id
-    this.heroService
-      .getHero(Number(id))
-      .subscribe((hero) => this.heroFormGroup.setValue(hero));
+    if (id) {
+      this.heroService
+        .getHero(Number(id))
+        .subscribe((hero) => this.heroFormGroup.setValue(hero));
+    }
+
+    this.heroFormGroup.setValue({});
   }
 
   onBackHandler() {
@@ -37,8 +38,14 @@ export class HeroFormComponent implements OnInit {
   }
 
   onSaveHandler() {
-    this.heroService
-      .updateHero(this.heroFormGroup.value)
-      .subscribe(() => this.onBackHandler());
+    if (this.heroFormGroup.get('id')?.value) {
+      this.heroService
+        .updateHero(this.heroFormGroup.value)
+        .subscribe(() => this.onBackHandler());
+    } else {
+      this.heroService
+        .addNewHero(this.heroFormGroup.value)
+        .subscribe(() => this.onBackHandler());
+    }
   }
 }

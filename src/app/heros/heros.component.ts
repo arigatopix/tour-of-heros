@@ -20,4 +20,10 @@ export class HerosComponent implements OnInit {
       error: (err) => (this.message = err.message),
     });
   }
+
+  onDeleteHeroHandler(id: number) {
+    this.heroService.deleteHero(id).subscribe(() => {
+      this.heroes = this.heroes.filter((h) => h.id !== id);
+    });
+  }
 }
