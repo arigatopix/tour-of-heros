@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+<h4>Top Heros</h4>
+
+<div class="my-2 d-flex justify-content-around heroes">
+  <a *ngFor="let hero of heros" class="m2 p-4 text-decoration-none">{{
+    hero.name
+  }}</a>
+</div>

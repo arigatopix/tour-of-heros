@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HEROS } from '../mock-heros';
+import { HEROES } from '../mock-heroes';
 import { Hero } from '../hero';
 
 @Component({
-  selector: 'app-heros',
+  selector: 'app-heroes',
   templateUrl: './heros.component.html',
   styleUrls: ['./heros.component.scss'],
 })
 export class HerosComponent implements OnInit {
-  heros = HEROS;
+  heros = HEROES;
 
   heroFormGroup = new FormGroup({
     id: new FormControl(),
