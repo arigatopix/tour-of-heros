@@ -33,4 +33,8 @@ export class HeroService {
   deleteHero(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.basedUrl}/heroes/${id}`);
   }
+
+  searchHero(term: string): Observable<Hero[]> {
+    return this.httpClient.get<Hero[]>(`${this.basedUrl}/heroes?q=${term}`);
+  }
 }

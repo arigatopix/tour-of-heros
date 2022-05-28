@@ -1,0 +1,13 @@
+<div>
+  <label for="term">Hero Search</label>
+  <input
+    type="text"
+    id="term"
+    [formControl]="termFormControl"
+    class="form-control"
+  />
+
+  <ul>
+    <li *ngFor="let hero of heroes">{{ hero.name }}</li>
+  </ul>
+</div>
