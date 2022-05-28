@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,8 +11,19 @@ import { AlertComponent } from './alert/alert.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HerosComponent, DashboardComponent, AlertComponent, HeroFormComponent],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  declarations: [
+    AppComponent,
+    HerosComponent,
+    DashboardComponent,
+    AlertComponent,
+    HeroFormComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

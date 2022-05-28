@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
 
@@ -7,26 +8,15 @@ import { HEROES } from './mock-heroes';
   providedIn: 'root',
 })
 export class HeroService {
-  constructor() {}
+  basedUrl: string = 'http://localhost:8080';
 
-  // void -> Observable<Hero[]>
-  // <Hero[]> เป็นการ check type แบบใส่ type คล้าย arg function
+  constructor(private httpClient: HttpClient) {}
+
   getHeroes(): Observable<Hero[]> {
-    // หลังจาก get ข้อมูลให้ return
-    return of(HEROES);
-    // return throwError(() => {
-    //   return {
-    //     status: 404,
-    //     message: 'Not Found',
-    //   };
-    // });
+    return this.httpClient.get<Hero[]>(`${this.basedUrl}/heroes`);
   }
 
-  // input id
-  // hero เป็น mock-data
   getHero(id: number): Observable<Hero> {
-    const hero = HEROES.find((hero) => hero.id === id)!;
-    // ใส่ ! บอก compli ว่าอนาคตจะมี value มา assign
-    return of(hero);
+    return this.httpClient.get<Hero>(`${this.basedUrl}/heroes/${id}`);
   }
 }
