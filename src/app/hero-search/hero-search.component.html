@@ -7,7 +7,13 @@
     class="form-control"
   />
 
-  <ul>
-    <li *ngFor="let hero of heroes">{{ hero.name }}</li>
+  <ul class="list-group">
+    <a
+      *ngFor="let hero of heroes"
+      class="list-group-item"
+      routerLink="/hero-form/{{ hero.id }}"
+    >
+      {{ hero.name }}
+    </a>
   </ul>
 </div>
