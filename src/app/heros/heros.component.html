@@ -4,7 +4,7 @@
   <li
     class="list-group-item list-group-item-action"
     [ngClass]="{ active: hero.id === heroFormGroup.get('id')?.value }"
-    *ngFor="let hero of heros"
+    *ngFor="let hero of heroes"
     (click)="onSelectHero(hero)"
   >
     <span class="badge">{{ hero.id }}</span>

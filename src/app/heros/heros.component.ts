@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HEROES } from '../mock-heroes';
+import { HeroService } from '../hero.service';
+
 import { Hero } from '../hero';
 
 @Component({
@@ -9,16 +10,18 @@ import { Hero } from '../hero';
   styleUrls: ['./heros.component.scss'],
 })
 export class HerosComponent implements OnInit {
-  heros = HEROES;
+  heroes: Hero[] = [];
 
   heroFormGroup = new FormGroup({
     id: new FormControl(),
     name: new FormControl(),
   });
 
-  constructor() {}
+  constructor(private heroService: HeroService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.heroes = this.heroService.getHeroes();
+  }
 
   onSelectHero(hero: Hero): void {
     this.heroFormGroup.setValue(hero);
