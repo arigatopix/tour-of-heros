@@ -9,7 +9,7 @@
 
   <ul class="list-group">
     <a
-      *ngFor="let hero of heroes"
+      *ngFor="let hero of heroes$ | async"
       class="list-group-item"
       routerLink="/hero-form/{{ hero.id }}"
     >
